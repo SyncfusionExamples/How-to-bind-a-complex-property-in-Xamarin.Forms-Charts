@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms" 
+             xmlns:local="clr-namespace:ChartSample" xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             mc:Ignorable="d"
+             x:Class="ChartSample.MainPage">
+    <ContentPage.BindingContext>
+        <local:ViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout VerticalOptions="FillAndExpand" Spacing="5">
+       
+        <chart:SfChart VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <chart:SfChart.PrimaryAxis>
+                <chart:CategoryAxis/>
+            </chart:SfChart.PrimaryAxis>
+
+            <chart:SfChart.SecondaryAxis>
+                <chart:NumericalAxis x:Name="numericalAxis"  Minimum="0" Maximum="35"/>
+            </chart:SfChart.SecondaryAxis>
+
+            <chart:SfChart.Series>                
+                <chart:ColumnSeries ItemsSource="{Binding CategoryData}"
+                                    XBindingPath="Month" 
+                                    YBindingPath="Data.YValue[1]"
+                                    Label="Column">
+                </chart:ColumnSeries>
+
+                <chart:LineSeries ItemsSource="{Binding CategoryData}"
+                                  XBindingPath="Month"  
+                                  YBindingPath="Data.Products.ProductA"
+                                  Label="Product A">
+                </chart:LineSeries>
+
+                <chart:LineSeries ItemsSource="{Binding CategoryData}"
+                                  XBindingPath="Month" 
+                                  YBindingPath="Data.Products.ProductB"
+                                  Label="Product B">
+                </chart:LineSeries>
+            </chart:SfChart.Series>
+
+            <chart:SfChart.Legend>
+                <chart:ChartLegend/>
+            </chart:SfChart.Legend>
+
+        </chart:SfChart>
+    </StackLayout>
+
+</ContentPage>
